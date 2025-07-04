@@ -31,7 +31,7 @@ public class Serie {
 
     private String imagemPoster;
 
-    @Transient
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Episodio> episodios = new ArrayList<>();
 
     public Serie() {
@@ -42,6 +42,7 @@ public class Serie {
         this.totalTemporadas = dadosSerie.totalTemporadas();
         this.avaliacao = OptionalDouble.of(Double.valueOf(dadosSerie.avaliacao())).orElse(0);
         this.categoria = Categoria.fromString(dadosSerie.categoria().split(",")[0].trim());
+        this.atores = dadosSerie.atores();
         this.imagemPoster = dadosSerie.imagemPoster();
         this.sinopse = ConsultaMyMemory.obterTraducao(dadosSerie.sinopse());
     }
@@ -59,6 +60,7 @@ public class Serie {
     }
 
     public void setEpisodios(List<Episodio> episodios) {
+        episodios.forEach(e -> e.setSerie(this));
         this.episodios = episodios;
     }
 
@@ -126,6 +128,7 @@ public class Serie {
                 ", totalTemporadas= " + totalTemporadas +
                 ", avaliacao= " + avaliacao +
                 ", sinopse=' " + sinopse + '\'' +
-                ", imagemPoster=' " + imagemPoster + '\'' ;
+                ", imagemPoster=' " + imagemPoster + '\'' +
+                ", Episodios=' " + episodios + '\'' ;
     }
 }
