@@ -191,7 +191,7 @@ public class Principal {
         System.out.println("Avaliações a partir de que valor? ");
         var avaliacao = leitura.nextDouble();
 
-        List<Serie> serieTemporadaAvaliacao = repositorio.findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(quantidadeTemporadas, avaliacao);
+        List<Serie> serieTemporadaAvaliacao = repositorio.seriesPorTemporadaEAvaliacao(quantidadeTemporadas, avaliacao);
         System.out.println(" Series com até " + quantidadeTemporadas +  " temporadas" +
                 " e Com avaliação a partir de " + avaliacao);
         serieTemporadaAvaliacao.forEach(System.out::println);
