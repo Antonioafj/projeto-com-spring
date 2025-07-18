@@ -14,7 +14,7 @@ public record SerieDTO( Long id,
 
                         String atores,
 
-                        String sinopse,
+                        String poster,
 
-                        String imagemPoster) {
+                        String sinopse) {
 }

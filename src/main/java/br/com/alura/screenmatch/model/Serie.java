@@ -27,9 +27,9 @@ public class Serie {
 
     private String atores;
 
-    private String sinopse;
+    private String poster;
 
-    private String imagemPoster;
+    private String sinopse;
 
     @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Episodio> episodios = new ArrayList<>();
@@ -43,7 +43,7 @@ public class Serie {
         this.avaliacao = OptionalDouble.of(Double.valueOf(dadosSerie.avaliacao())).orElse(0);
         this.categoria = Categoria.fromString(dadosSerie.categoria().split(",")[0].trim());
         this.atores = dadosSerie.atores();
-        this.imagemPoster = dadosSerie.imagemPoster();
+        this.poster = dadosSerie.imagemPoster();
         this.sinopse = ConsultaMyMemory.obterTraducao(dadosSerie.sinopse());
     }
 
@@ -88,12 +88,12 @@ public class Serie {
         this.categoria = categoria;
     }
 
-    public String getImagemPoster() {
-        return imagemPoster;
+    public String getPoster() {
+        return poster;
     }
 
-    public void setImagemPoster(String imagemPoster) {
-        this.imagemPoster = imagemPoster;
+    public void setPoster(String poster) {
+        this.poster = poster;
     }
 
     public String getSinopse() {
@@ -128,7 +128,7 @@ public class Serie {
                 ", totalTemporadas= " + totalTemporadas +
                 ", avaliacao= " + avaliacao +
                 ", sinopse=' " + sinopse + '\'' +
-                ", imagemPoster=' " + imagemPoster + '\'' +
+                ", imagemPoster=' " + poster + '\'' +
                 ", Episodios=' " + episodios + '\'' ;
     }
 }
